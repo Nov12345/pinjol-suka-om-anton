@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #882388; /* Warna latar belakang aplikasi */
+  margin: 0;
+  padding: 20px;
+}
+
+#chat {
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 300px;
+  overflow-y: scroll;
+  background: white; /* Warna latar belakang kotak chat tetap putih */
+  scrollbar-width: thin; /* Untuk Firefox */
+  scrollbar-color: #ccc #e0e0e0; /* Warna thumb dan track untuk Firefox */
+}
+
+/* Untuk Chrome, Safari, dan Edge */
+#chat::-webkit-scrollbar {
+  width: 10px; /* Lebar scrollbar */
+}
+
+#chat::-webkit-scrollbar-track {
+  background: #ffffff; /* Warna latar belakang track scrollbar */
+}
+
+#chat::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Warna thumb scrollbar */
+  border-radius: 10px; /* Sudut melengkung pada thumb */
+}
+
+#message {
+  width: 80%;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 15px;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 10px; /* Menambah padding agar lebih nyaman */
+  border-radius: 30px; /* Sudut melengkung */
+}
+
+.user {
+  background-color: #e0f7fa; /* Warna pesan pengguna */
+  text-align: left;
+}
+
+.bot {
+  background-color: #ffe0b2; /* Warna pesan bot */
+  text-align: right;
+}
+
+.yellow {
+  color: #ffea00; /* Kuning */
+}
+
+.green {
+  color: #4caf50; /* Hijau Muda */
+}
