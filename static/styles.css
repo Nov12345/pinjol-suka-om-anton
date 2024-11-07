@@ -1,63 +1,212 @@
+/* Global Styles */
+html,
 body {
   font-family: Arial, sans-serif;
-  background-color: #882388; /* Warna latar belakang aplikasi */
+  background-color: #f7f7f7f7;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  width: 800px;
+}
+.yellow {
+  color: rgb(0, 0, 0);
+}
+.green {
+  color: green;
+}
+.title-container {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
+/* Menu Container Position */
+.menu-container {
+  position: absolute;
+  top: 5px;
+  right: 600px;
+}
+
+.truno {
+  margin-top: 1%;
+  margin-bottom: 0%;
+  margin-left: 1.5%;
+}
+
+/* Chat Container */
 #chat {
-  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 40px);
+  margin-bottom: 20px;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+/* Messages Section */
+#messages {
+  flex: 1;
+  overflow-y: auto;
   padding: 10px;
-  height: 300px;
-  overflow-y: scroll;
-  background: white; /* Warna latar belakang kotak chat tetap putih */
-  scrollbar-width: thin; /* Untuk Firefox */
-  scrollbar-color: #ccc #e0e0e0; /* Warna thumb dan track untuk Firefox */
+  border: 3px solid #ccc;
+  background: white;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 98%;
+  width: 95%;
+  max-width: 780px;
+  box-sizing: border-box;
 }
 
-/* Untuk Chrome, Safari, dan Edge */
-#chat::-webkit-scrollbar {
-  width: 10px; /* Lebar scrollbar */
+/* Scrollbar Styles */
+#messages::-webkit-scrollbar {
+  width: 5px;
 }
 
-#chat::-webkit-scrollbar-track {
-  background: #ffffff; /* Warna latar belakang track scrollbar */
+#messages::-webkit-scrollbar-track {
+  background: white;
 }
 
-#chat::-webkit-scrollbar-thumb {
-  background-color: #ccc; /* Warna thumb scrollbar */
-  border-radius: 10px; /* Sudut melengkung pada thumb */
+#messages::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 8px;
 }
 
-#message {
-  width: 80%;
-  padding: 10px;
+#messages::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
 }
 
-button {
-  padding: 10px 15px;
-}
-
+/* Message Styles */
 .message {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 15px;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 80%;
   margin: 5px 0;
-  padding: 10px; /* Menambah padding agar lebih nyaman */
-  border-radius: 30px; /* Sudut melengkung */
 }
 
 .user {
-  background-color: #e0f7fa; /* Warna pesan pengguna */
-  text-align: left;
+  background-color: #e0f7fa;
+  align-self: flex-start;
 }
 
 .bot {
-  background-color: #ffe0b2; /* Warna pesan bot */
-  text-align: right;
+  background-color: #ffe0b2;
+  align-self: flex-end;
 }
 
-.yellow {
-  color: #ffea00; /* Kuning */
+/* Separator */
+.separator {
+  width: 95%;
+  max-width: 780px;
+  height: 1px;
+  background-color: #d3d3d3;
 }
 
-.green {
-  color: #4caf50; /* Hijau Muda */
+/* Input Container */
+.input-container {
+  border: 3px solid #ccc;
+  border-top-color: transparent;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 0px 0px 4px 4px;
+  width: 95%;
+  max-width: 780px;
+  box-sizing: border-box;
+}
+
+/* Input Field */
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 80px);
+}
+
+/* Button Styles */
+button {
+  width: 70px;
+  padding: 10px;
+  background-color: #06a328;
+  color: rgb(250, 247, 247);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffea00;
+  color: rgb(27, 27, 27);
+}
+
+/* Menu Icon */
+.menu-icon {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-icon:hover {
+  color: #333;
+  background-color: #ffea00;
+  border-radius: 10%;
+  animation: scaleEffect 0.3s ease-in-out forwards;
+}
+
+@keyframes scaleEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Dropdown Menu */
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  z-index: 1;
+}
+
+.menu-dropdown a,
+.menu-dropdown p {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.menu-dropdown a:hover {
+  background-color: #f1f1f1;
+}
+
+.menu-dropdown p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
 }

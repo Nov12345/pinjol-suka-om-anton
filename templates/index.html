@@ -8,91 +8,86 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
-    <style>
-      #chat {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-      }
-      #messages {
-        flex: 1;
-        overflow-y: auto;
-        padding: 10px;
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-      }
-      .input-container {
-        display: flex;
-        height: 6vh%;
-      }
-      .chat-list {
-        display: flex;
-        height: 80%;
-      }
-      input[type="text"] {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      button {
-        width: 20%;
-        padding: 10px;
-        background-color: #28a745;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #218838;
-      }
-      .message {
-        margin: 5px 0;
-      }
-      .user {
-        text-align: right;
-        color: blue;
-      }
-      .bot {
-        text-align: left;
-        color: green;
-      }
-    </style>
   </head>
   <body>
-    <h1><span class="yellow">Sobat</span><span class="green">Chat</span></h1>
+    <h1 class="truno">
+      <span class="yellow">Sobat</span><span class="green">Chat</span>
+    </h1>
+    <div class="menu-container">
+      <button id="menuButton" class="menu-icon">&#9776;</button>
+      <div id="menuDropdown" class="menu-dropdown">
+        <a href="#">Akun</a>
+        <a href="#">Pengaturan</a>
+        <p>SobatChat App Build v24.10.</p>
+      </div>
+    </div>
+
+    <!-- Bagian kotak pesan -->
     <div id="chat">
       <div id="messages"></div>
+      <div class="separator"></div>
       <div class="input-container">
         <input id="message" type="text" placeholder="Ketik pesan..." />
-        <button onclick="sendMessage()">Kirim</button>
+        <button id="sendButton">Kirim</button>
       </div>
     </div>
 
     <script>
+      const sendButton = document.getElementById("sendButton");
+      const messageInput = document.getElementById("message");
+      const messages = document.getElementById("messages");
+
+      sendButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Cegah aksi default tombol
+        sendMessage();
+      });
+
+      messageInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Cegah aksi default saat tekan Enter
+          sendMessage();
+        }
+      });
+
       function sendMessage() {
-        const messageInput = document.getElementById("message");
-        const message = messageInput.value.trim();
-        if (message) {
-          const messages = document.getElementById("messages");
-          const userMessage = document.createElement("div");
-          userMessage.className = "message user";
-          userMessage.textContent = message;
-          messages.appendChild(userMessage);
-
-          // Simulasi respons dari bot
-          const botMessage = document.createElement("div");
-          botMessage.className = "message bot";
-          botMessage.textContent =
-            "Bot: " + message.split("").reverse().join("");
-          messages.appendChild(botMessage);
-
-          // Mengosongkan input
-          messageInput.value = "";
-          messages.scrollTop = messages.scrollHeight; // Gulir ke bawah
+        const messageText = messageInput.value;
+        if (messageText) {
+          const messageElement = document.createElement("div");
+          messageElement.className = "message user";
+          messageElement.textContent = messageText;
+          messages.appendChild(messageElement);
+          messages.scrollTop = messages.scrollHeight; // Scroll ke pesan terakhir
+          messageInput.value = ""; // Reset input
+          // Simulasi pesan bot
+          setTimeout(() => {
+            const botMessageElement = document.createElement("div");
+            botMessageElement.className = "message bot";
+            botMessageElement.textContent =
+              "Ini adalah balasan otomatis dari bot.";
+            messages.appendChild(botMessageElement);
+            messages.scrollTop = messages.scrollHeight; // Scroll ke pesan terakhir
+          }, 1000); // Delay 1 detik untuk bot
         }
       }
+
+      // Menangani dropdown menu
+      const menuButton = document.getElementById("menuButton");
+      const menuDropdown = document.getElementById("menuDropdown");
+
+      menuButton.addEventListener("click", function () {
+        menuDropdown.style.display =
+          menuDropdown.style.display === "block" ? "none" : "block";
+      });
+
+      // Menutup dropdown saat mengklik di luar
+      window.addEventListener("click", function (event) {
+        if (
+          !menuButton.contains(event.target) &&
+          !menuDropdown.contains(event.target)
+        ) {
+          menuDropdown.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>
